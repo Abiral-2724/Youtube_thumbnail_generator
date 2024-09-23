@@ -24,7 +24,7 @@ const ThumbnailAnalytics = () => {
       if (user && user._id) {
         try {
           setLoading(true);
-          const response = await axios.get(`http://localhost:8000/api/v1/generate-thumbnail/user/${user._id}`);
+          const response = await axios.get(`https://youtube-thumbnail-generator.onrender.com/api/v1/generate-thumbnail/user/${user._id}`);
           const thumbnails = response.data;
 
           // Prepare data for current year

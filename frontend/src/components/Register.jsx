@@ -50,7 +50,7 @@ const Register = () => {
     setLoading(true); // Set loading while API call is made
     try {
       const res = await axios.post(
-        'http://localhost:8000/api/v1/user/register',
+        'https://youtube-thumbnail-generator.onrender.com/api/v1/user/register',
         input,
         {
           headers: {

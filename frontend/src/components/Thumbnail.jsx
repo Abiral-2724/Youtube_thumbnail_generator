@@ -28,7 +28,7 @@ const ThumbnailGenerator = () => {
     setShowViewButton(false);
 
     try {
-      const response = await axios.post('http://localhost:8000/api/v1/generate-thumbnail/thumbnail', { youtubeUrl: url, userId: user._id });
+      const response = await axios.post('https://youtube-thumbnail-generator.onrender.com/api/v1/generate-thumbnail/thumbnail', { youtubeUrl: url, userId: user._id });
       setThumbnails(response.data.thumbnailUrls);
       setIsLoading(false);
       setShowViewButton(true);

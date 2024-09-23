@@ -13,7 +13,7 @@ const ThumbnailsPage = () => {
     const handleDownload = async (url, index) => {
         try {
             // Use proxy to bypass CORS and fetch image
-            const response = await axios.get(`http://localhost:8000/api/proxy-thumbnail?url=${url}`, { responseType: 'blob' });
+            const response = await axios.get(`https://youtube-thumbnail-generator.onrender.com/api/proxy-thumbnail?url=${url}`, { responseType: 'blob' });
             
             // Create a URL for the blob
             const blobUrl = window.URL.createObjectURL(new Blob([response.data]));

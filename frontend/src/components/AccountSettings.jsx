@@ -15,7 +15,7 @@ const AccountSettings = () => {
 
   const fetchUserInfo = async () => {
     try {
-      const response = await axios.post('http://localhost:8000/api/v1/user/profile', {
+      const response = await axios.post('https://youtube-thumbnail-generator.onrender.com/api/v1/user/profile', {
         withCredentials: true
       });
       const { user } = response.data; // This should work if the response structure is correct
@@ -42,7 +42,7 @@ const AccountSettings = () => {
   
     try {
       const response = await axios.put(
-        `http://localhost:8000/api/v1/user/profile/update/${userId}`,
+        `https://youtube-thumbnail-generator.onrender.com/api/v1/user/profile/update/${userId}`,
         { email, username, password },  // Sends current email, username, and password for updating
         { withCredentials: true }
       );

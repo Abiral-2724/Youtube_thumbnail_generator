@@ -19,7 +19,7 @@ const Explore = () => {
   const fetchThumbnails = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get('http://localhost:8000/api/v1/generate-thumbnail/getthumbnails');
+      const response = await axios.get('https://youtube-thumbnail-generator.onrender.com/api/v1/generate-thumbnail/getthumbnails');
       const sortedThumbnails = response.data.sort((a, b) => new Date(b.generatedAt) - new Date(a.generatedAt));
       setThumbnails(sortedThumbnails);
       setFilteredThumbnails(sortedThumbnails);
@@ -37,7 +37,7 @@ const Explore = () => {
     setIsLoading(true);
     setError('');
     try {
-      const response = await axios.get(`http://localhost:8000/api/v1/generate-thumbnail/search?url=${searchUrl}`);
+      const response = await axios.get(`https://youtube-thumbnail-generator.onrender.com/api/v1/generate-thumbnail/search?url=${searchUrl}`);
       const sortedSearchResults = response.data.sort((a, b) => new Date(b.generatedAt) - new Date(a.generatedAt));
       setFilteredThumbnails(sortedSearchResults);
     } catch (err) {
@@ -49,7 +49,7 @@ const Explore = () => {
 
   const handleDownload = async (url, index) => {
     try {
-      const response = await axios.get(`http://localhost:8000/api/proxy-thumbnail?url=${url}`, { responseType: 'blob' });
+      const response = await axios.get(`https://youtube-thumbnail-generator.onrender.com/api/proxy-thumbnail?url=${url}`, { responseType: 'blob' });
       const blobUrl = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement('a');
       link.href = blobUrl;

@@ -54,7 +54,7 @@ const Collection = () => {
 
   const fetchCollections = async () => {
     try {
-      const response = await axios.get(`http://localhost:8000/api/v1/collections/user/${user._id}`);
+      const response = await axios.get(`https://youtube-thumbnail-generator.onrender.com/api/v1/collections/user/${user._id}`);
       setCollections(response.data);
       setFilteredCollections(response.data);
     } catch (error) {
@@ -113,7 +113,7 @@ const Collection = () => {
   const handleAddCollection = async () => {
     if (newCollectionName.trim()) {
       try {
-        const response = await axios.post('http://localhost:8000/api/v1/collections/', { name: newCollectionName.trim(), userId: user._id });
+        const response = await axios.post('https://youtube-thumbnail-generator.onrender.com/api/v1/collections/', { name: newCollectionName.trim(), userId: user._id });
         const newCollection = response.data;
         setCollections([...collections, newCollection]);
         setFilteredCollections([...collections, newCollection]);
@@ -129,7 +129,7 @@ const Collection = () => {
 
   const handleSelectCollection = async (collection) => {
     try {
-      const response = await axios.get(`http://localhost:8000/api/v1/collections/${collection._id}/thumbnails`);
+      const response = await axios.get(`https://youtube-thumbnail-generator.onrender.com/api/v1/collections/${collection._id}/thumbnails`);
       setSelectedCollection({
         ...collection,
         thumbnails: response.data.thumbnails
@@ -142,7 +142,7 @@ const Collection = () => {
   const handleAddThumbnail = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.post('http://localhost:8000/api/v1/collections/add-thumbnail', {
+      const response = await axios.post('https://youtube-thumbnail-generator.onrender.com/api/v1/collections/add-thumbnail', {
         collectionId: selectedCollection._id,
         youtubeUrl,
         userId: user._id
@@ -164,7 +164,7 @@ const Collection = () => {
 
   const handleDownloadCollection = async () => {
     try {
-      const response = await axios.get(`http://localhost:8000/api/v1/collections/download/${selectedCollection._id}`);
+      const response = await axios.get(`https://youtube-thumbnail-generator.onrender.com/api/v1/collections/download/${selectedCollection._id}`);
       alert('Download URLs: ' + response.data.thumbnails.join(', '));
     } catch (error) {
       console.error('Error downloading collection:', error);
@@ -176,7 +176,7 @@ const Collection = () => {
 
     if (window.confirm(`Are you sure you want to delete the collection "${selectedCollection.name}"?`)) {
       try {
-        await axios.delete(`http://localhost:8000/api/v1/collections/${selectedCollection._id}`);
+        await axios.delete(`https://youtube-thumbnail-generator.onrender.com/api/v1/collections/${selectedCollection._id}`);
         setCollections(collections.filter(c => c._id !== selectedCollection._id));
         setFilteredCollections(filteredCollections.filter(c => c._id !== selectedCollection._id));
         setSelectedCollection(null);
@@ -188,7 +188,7 @@ const Collection = () => {
 
   const handleDownload = async (url, index) => {
     try {
-      const response = await axios.get(`http://localhost:8000/api/proxy-thumbnail?url=${url}`, { responseType: 'blob' });
+      const response = await axios.get(`https://youtube-thumbnail-generator.onrender.com/api/proxy-thumbnail?url=${url}`, { responseType: 'blob' });
       const blobUrl = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement('a');
       link.href = blobUrl;
